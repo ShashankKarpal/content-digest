@@ -2,104 +2,104 @@
   "assets": [
     {
       "destination": "design/github/readme-banner-dark-1400x400.png",
-      "destinationSha256": "3290b11439a4b33f085e52d3697838cc70e92ce614238c72c83ea9d8f5775ccd",
+      "destinationSha256": "fc9646b96072ccd6617e3cb1dd32445e99bd7537f780fc9651ea19222b52fe9e",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/web/banner-dark-1400x400.png",
-      "sourceSha256": "3290b11439a4b33f085e52d3697838cc70e92ce614238c72c83ea9d8f5775ccd"
+      "source": "design/marks/out/content-digest/web/banner-dark-1400x400.png",
+      "sourceSha256": "fc9646b96072ccd6617e3cb1dd32445e99bd7537f780fc9651ea19222b52fe9e"
     },
     {
       "destination": "design/github/readme-banner-dark-1400x400.svg",
-      "destinationSha256": "000135d238df1a9f2872165dda9da64e1fd8b2952aff250d0f81495def326c0d",
+      "destinationSha256": "8758c4814a87653fd11d0d3577378e3daca2fc1c4b70fa89278fc4a8bb0e8d16",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/web/banner-dark-1400x400.svg",
-      "sourceSha256": "000135d238df1a9f2872165dda9da64e1fd8b2952aff250d0f81495def326c0d"
+      "source": "design/marks/out/content-digest/web/banner-dark-1400x400.svg",
+      "sourceSha256": "8758c4814a87653fd11d0d3577378e3daca2fc1c4b70fa89278fc4a8bb0e8d16"
     },
     {
       "destination": "design/github/readme-banner-light-1400x400.png",
-      "destinationSha256": "9d53f8154d1afade2b9cdb7322750586ea344bf0756a5015beaa5f2eb0f22c09",
+      "destinationSha256": "1ca9ad019c9a37f3b8ffa5d60fc7014a7e1fb223ad2d2e69575205d7a0f373c7",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/web/banner-light-1400x400.png",
-      "sourceSha256": "9d53f8154d1afade2b9cdb7322750586ea344bf0756a5015beaa5f2eb0f22c09"
+      "source": "design/marks/out/content-digest/web/banner-light-1400x400.png",
+      "sourceSha256": "1ca9ad019c9a37f3b8ffa5d60fc7014a7e1fb223ad2d2e69575205d7a0f373c7"
     },
     {
       "destination": "design/github/readme-banner-light-1400x400.svg",
-      "destinationSha256": "da3c5dc233387807bbc2f385dfcd2a343db9e5a41a60221a5b24654b10a56bcc",
+      "destinationSha256": "be08d3f15ea4302268da37887a957ea35bbdb9cc4bc8f1e7536d6a1aea2eaa1e",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/web/banner-light-1400x400.svg",
-      "sourceSha256": "da3c5dc233387807bbc2f385dfcd2a343db9e5a41a60221a5b24654b10a56bcc"
+      "source": "design/marks/out/content-digest/web/banner-light-1400x400.svg",
+      "sourceSha256": "be08d3f15ea4302268da37887a957ea35bbdb9cc4bc8f1e7536d6a1aea2eaa1e"
     },
     {
       "destination": "design/github/social-preview-1280x640.png",
-      "destinationSha256": "d1c30b1b97bc50ba99150bf9110a91c0799e8adf631443531595b7a79a7e6a30",
+      "destinationSha256": "2f544c62ad9792b60a4f35e467cb52239693bb7d7ce6b58e517e1166cb541a81",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/web/social-preview-1280x640.png",
-      "sourceSha256": "d1c30b1b97bc50ba99150bf9110a91c0799e8adf631443531595b7a79a7e6a30"
+      "source": "design/marks/out/content-digest/web/social-preview-1280x640.png",
+      "sourceSha256": "2f544c62ad9792b60a4f35e467cb52239693bb7d7ce6b58e517e1166cb541a81"
     },
     {
       "destination": "design/logo/content-digest-lockup-horizontal-dark.svg",
-      "destinationSha256": "d8cde3d556aa67186717dc5f9a882fb5931eb7fa5b12be2ad6c51b9a6b6b1064",
+      "destinationSha256": "fa72ae7906165ccfc5eb9762207909fd6feca54d751a3056ca2c5b1451616aca",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/wordmark/wordmark-horizontal-dark.svg",
-      "sourceSha256": "d8cde3d556aa67186717dc5f9a882fb5931eb7fa5b12be2ad6c51b9a6b6b1064"
+      "source": "design/marks/out/content-digest/wordmark/wordmark-horizontal-dark.svg",
+      "sourceSha256": "fa72ae7906165ccfc5eb9762207909fd6feca54d751a3056ca2c5b1451616aca"
     },
     {
       "destination": "design/logo/content-digest-lockup-horizontal.svg",
-      "destinationSha256": "b44d06cc8f27351155e633dbd568199de8751e07665d4d4706326e42b79f7444",
+      "destinationSha256": "9a14e897299fa1f522e110cc5eefa4e048e4f05fb664d136dd6e84fc1d34fbf3",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/wordmark/wordmark-horizontal-light.svg",
-      "sourceSha256": "b44d06cc8f27351155e633dbd568199de8751e07665d4d4706326e42b79f7444"
+      "source": "design/marks/out/content-digest/wordmark/wordmark-horizontal-light.svg",
+      "sourceSha256": "9a14e897299fa1f522e110cc5eefa4e048e4f05fb664d136dd6e84fc1d34fbf3"
     },
     {
       "destination": "design/logo/content-digest-symbol-dark.svg",
       "destinationSha256": "207c62e0fd44655c44e6e98d96d55290cab4bd456c1dc044cfb786fa0ddc995c",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/svg/mark.svg",
+      "source": "design/marks/out/content-digest/svg/mark.svg",
       "sourceSha256": "207c62e0fd44655c44e6e98d96d55290cab4bd456c1dc044cfb786fa0ddc995c"
     },
     {
       "destination": "design/logo/content-digest-symbol-mono-black.svg",
       "destinationSha256": "f28ee49135847c8c7bec4fdde689066530013b909bf0eb2dfd2f9ed262c0e89e",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/svg/mark-mono.svg",
+      "source": "design/marks/out/content-digest/svg/mark-mono.svg",
       "sourceSha256": "f28ee49135847c8c7bec4fdde689066530013b909bf0eb2dfd2f9ed262c0e89e"
     },
     {
       "destination": "design/logo/content-digest-symbol.svg",
       "destinationSha256": "4d57f11d0a9c46422d689dd6c1495df99f5d05c642bf0644e49895e9121f8c5e",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/svg/mark-light.svg",
+      "source": "design/marks/out/content-digest/svg/mark-light.svg",
       "sourceSha256": "4d57f11d0a9c46422d689dd6c1495df99f5d05c642bf0644e49895e9121f8c5e"
     },
     {
       "destination": "design/logo/menubar-template.png",
       "destinationSha256": "650abee7250020402bbc73132f5ca9b4115469d1da24a3d4614e10c8543efd44",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/macos/content-digest-app-template@2x.png",
+      "source": "design/marks/out/content-digest/macos/content-digest-template@2x.png",
       "sourceSha256": "650abee7250020402bbc73132f5ca9b4115469d1da24a3d4614e10c8543efd44"
     },
     {
       "destination": "design/web/favicon-48.png",
       "destinationSha256": "7bf856cc40f972c3a5b853f817b246cedf53b1c08e085a83885f3ce7f3ab9a2e",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/watchos/AppIcon.appiconset/icon-24@2x.png",
+      "source": "design/marks/out/content-digest/watchos/AppIcon.appiconset/icon-24@2x.png",
       "sourceSha256": "7bf856cc40f972c3a5b853f817b246cedf53b1c08e085a83885f3ce7f3ab9a2e"
     },
     {
       "destination": "design/web/favicon.svg",
       "destinationSha256": "a05cbfd5aa00df0cb9fd8ae2d60e71b05439771164ca18cffe292787ccb293e6",
       "mode": "copy",
-      "source": "design/marks/out/content-digest-app/web/favicon.svg",
+      "source": "design/marks/out/content-digest/web/favicon.svg",
       "sourceSha256": "a05cbfd5aa00df0cb9fd8ae2d60e71b05439771164ca18cffe292787ccb293e6"
     }
   ],
-  "brandVersion": "1.1.0",
-  "canonicalSourceCommit": "5facb9973fb9ccb2445a67f94dfc124aa0c077f6",
+  "brandVersion": "1.2.0",
+  "canonicalSourceCommit": "9a429aff2281d93b2670972abe245e218f32a307",
   "canonicalSourceDirty": false,
-  "contentSetSha256": "2edc60ffa4e8a41f0acd9a66b54d32001c43a3978120f56e75aafb7d01711b9d",
-  "generatorSha256": "6b05c8c2301445a16f927e212ca0c2120d67af2a5d10f9aa65e9f575c1ec8a39",
+  "contentSetSha256": "5e1ada665e78bcb99efbb7a5663b72193653bf4641e837806d5a2bc58e1e49b5",
+  "generatorSha256": "cf6ed6ac2987fa837df2d10929e879865a9a32dd1ddf2adf732c9bd28dd5f0fa",
   "lockSha256": "d8574f93ee9b99d1758cfbb20da047518e49df75c0cd8a5ac5697b397542a802",
-  "project": "content-digest-app",
+  "project": "content-digest",
   "schemaVersion": 1,
-  "tokenSha256": "62c4feeeb3f167d2c4b649594a1dd9b66d57677826610cdf08a6f27ebf48e837",
+  "tokenSha256": "4cec6442e911fe5a45bb82bfab679e4534a9b4e9301d6d07a120ccef57ded736",
   "visibility": "public"
 }
