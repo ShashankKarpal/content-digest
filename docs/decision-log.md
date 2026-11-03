@@ -1,5 +1,27 @@
 # docs/decision-log.md
 
+## 2026-11-03 | Client Runtime | Client log in ~/Library/Logs; PYTHONHOME on the uv 3.14 alias
+
+Context: The client LaunchAgent wrote its log to ~/contentdigest-client.log
+in the home folder, and its PYTHONHOME named uv's exact 3.14.7 install
+folder, while the other menu bar apps on this Mac use uv's minor-version
+alias. Removing that one uv patch folder would stop the client at its next
+start (exit 78, nothing logged).
+
+Decision: The LaunchAgent routes stdout and stderr to
+~/Library/Logs/contentdigest-client.log, and PYTHONHOME is
+~/.local/share/uv/python/cpython-3.14-macos-aarch64-none (the alias, which
+points at the same 3.14.7 folder today). The plist is tracked in the private
+operations repo, not here. The entries below that name
+~/contentdigest-client.log describe their own dates.
+
+Reason: Logs belong under ~/Library/Logs, and one interpreter path for every
+menu bar app means one rule to check after a uv change. After a future
+`uv python upgrade 3.14` the bundle's copied interpreter must be rebuilt
+with make_bundle.sh, as for the other apps.
+
+---
+
 ## 2026-10-31 | Client Runtime | The menu bar client moves to Content Digest Menu.app
 
 Context: The menu bar client's bundle and the Safari "Add to Dock" web app

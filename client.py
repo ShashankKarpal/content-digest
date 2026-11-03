@@ -38,12 +38,14 @@ except Exception:
 def request_notify_authorization():
     """Ask the modern notification centre for banner and sound rights.
 
-    Runs once at startup from the Content Digest Menu.app bundle (2026-08-24
-    decision log; the bundle was Content Digest.app until 2026-10-31). First
-    launch prompts; the answer is keyed to the bundle identifier
-    com.shashank.contentdigest. Failures print to stderr, which the
-    LaunchAgent routes to ~/Library/Logs/contentdigest-client.log, because a silent
-    notification failure is how switchdeck lost banners for a year."""
+    Runs once at startup from the Content Digest Menu.app bundle (decision
+    log 2026-08-24 for the bundle pattern, 2026-10-31 for the bundle name,
+    2026-11-03 for the log path). First launch prompts; the answer is keyed
+    to the bundle identifier com.shashank.contentdigest. The answer
+    (granted=True or False) and any failure print to stderr, which the
+    LaunchAgent routes to ~/Library/Logs/contentdigest-client.log, because
+    a silent notification failure is how switchdeck lost banners for a
+    year."""
     try:
         import UserNotifications as UN
         center = UN.UNUserNotificationCenter.currentNotificationCenter()
