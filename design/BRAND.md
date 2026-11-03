@@ -1,4 +1,4 @@
-# content-digest-app brand: Ink and Bone
+# content-digest brand: Ink and Bone
 
 This repository consumes Ink and Bone v1.1.0. The canonical definition and
 the only generator live in `ShashankKarpal/shashankkarpal`, under

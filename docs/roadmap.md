@@ -1,12 +1,12 @@
 # docs/roadmap.md
 
-## Roadmap — Content Digest App
+## Roadmap: Content Digest App
 
 Each version proves one behavior. Not one feature. One behavior.
 
 ---
 
-## v0.1 — Prove People Save
+## v0.1: Prove People Save
 **Behavior to prove:** Users save content regularly and trust the summaries.
 
 Priorities:
@@ -21,7 +21,7 @@ Done when: user saves at least 5 items in the first week without friction, and s
 
 ---
 
-## v0.2 — Prove People Return
+## v0.2: Prove People Return
 **Behavior to prove:** Users come back to their saved content on a rhythm.
 
 Priorities:
@@ -34,7 +34,7 @@ Done when: user opens digest email and interacts with at least one item per cycl
 
 ---
 
-## v0.3 — Prove People Act
+## v0.3: Prove People Act
 **Behavior to prove:** Users take action on saved content. The backlog does not become a pile to ignore.
 
 Priorities:
@@ -47,7 +47,7 @@ Done when: user does not feel overwhelmed by backlog and regularly archives or a
 
 ---
 
-## v1 — Feel Like a Thoughtful Assistant
+## v1: Feel Like a Thoughtful Assistant
 **Behavior to prove:** The app understands what the user actually cares about.
 
 Priorities:

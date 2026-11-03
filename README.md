@@ -89,8 +89,8 @@
 Requires: Python 3.11 or later, Ollama running locally, Homebrew.
 
 ```bash
-git clone https://github.com/ShashankKarpal/content-digest-app.git
-cd content-digest-app
+git clone https://github.com/ShashankKarpal/content-digest.git
+cd content-digest
 pip3 install -r requirements.txt --break-system-packages
 ollama pull qwen2.5:3b              # the summarizer
 ollama pull nomic-embed-text        # optional, enables semantic ask
@@ -190,18 +190,18 @@ screenshots/      UI screenshots
 | v0.4 | Reddit, extractor registry, ask-your-KB, Chrome extension | Shipped |
 | v0.5 | Close the loop: auth everywhere, a backlog email with one-tap state links, a review deck, auto-archive | Shipped; all but auth retired in v0.6 |
 | v0.6 | Capture and knowledge base: everything visible again, slim brief, Tool category, safe short links, links each post points to, summary self-check, local models only | Shipped |
-| v1 | Personalization: surface content based on what you act on | Data-gated: needs real act/archive signal first |
+| v1 | Personalization: surface content based on what you act on | Parked: the act and archive signal it needed was retired in v0.6 (decision 14); revisit only with a new signal |
 
 ## Deployment
 
-The always-on M1 is the runtime host. It runs a git clone of this repo at `~/content-digest-app` plus an auto-deploy agent (`com.shashank.autodeploy`, every 15 minutes since 2026-08-18; earlier docs said 5): fetch origin, hard-reset to the upstream branch on change, `py_compile` sanity check, then restart the server LaunchAgent. A failed compile logs to `~/autodeploy.log` and leaves the running service untouched. Any commit restarts the server, including documentation-only ones.
+The always-on M1 is the runtime host. It runs a git clone of this repo at `~/content-digest` plus an auto-deploy agent (`com.shashank.autodeploy`, every 15 minutes since 2026-08-18; earlier docs said 5): fetch origin, hard-reset to the upstream branch on change, `py_compile` sanity check, then restart the server LaunchAgent. A failed compile logs to `~/autodeploy.log` and leaves the running service untouched. Any commit restarts the server, including documentation-only ones.
 
 To ship: commit and push to GitHub from the dev machine. Never edit code on the M1; the next deploy cycle overwrites it by design. Runtime data (`knowledge.json`, `secrets.json`, and friends) is gitignored and survives deploys.
 
 ## Known limitations
 
 - The local model must be reachable for summarization; while it is down, saves wait in the failures list and are retried.
-- The Mac address changes across networks; update the iPhone shortcut if capture stops working.
+- The Shortcut, the extension and the menu bar client reach the server at a fixed address. A LAN address changes when the server's network changes; a tailnet address does not, so prefer the tailnet.
 - YouTube videos without transcripts hit the fetch failure guard rather than guessing from the title.
 - LinkedIn saved-post harvesting is not built; the Chrome extension captures one post at a time by right-click or pasted permalink.
 - No TLS; see Network exposure above.
