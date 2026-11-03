@@ -38,10 +38,11 @@ except Exception:
 def request_notify_authorization():
     """Ask the modern notification centre for banner and sound rights.
 
-    Runs once at startup from the Content Digest.app bundle (2026-08-24
-    decision log). First launch prompts; the answer is keyed to the bundle
-    identifier com.shashank.contentdigest. Failures print to stderr, which
-    the LaunchAgent routes to ~/contentdigest-client.log, because a silent
+    Runs once at startup from the Content Digest Menu.app bundle (2026-08-24
+    decision log; the bundle was Content Digest.app until 2026-10-31). First
+    launch prompts; the answer is keyed to the bundle identifier
+    com.shashank.contentdigest. Failures print to stderr, which the
+    LaunchAgent routes to ~/Library/Logs/contentdigest-client.log, because a silent
     notification failure is how switchdeck lost banners for a year."""
     try:
         import UserNotifications as UN
