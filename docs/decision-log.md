@@ -17,8 +17,11 @@ the tailnet address uses the existing bind_addresses switch in the serving
 host's config.json, turned on at deploy time with the owner watching.
 
 Reason: Owner go 2026-11-25, after confirming the iPhone Shortcut posts to
-the tailnet address. Tested: tests/test_inbox_auth.py fails 3 of 5 on the
-old code and passes on the new; full suite 143 of 143.
+the tailnet address. Tested: tests/test_inbox_auth.py has 7 cases; 3 fail
+on the code before 4abacb7 and 1 more (a cross-origin cookie post) on
+4abacb7; all pass on fb21e30. Full suite 145 of 145, also in a clean
+python3.14 environment built from requirements-server.txt. A refused
+capture still shows in the server log as "[req] POST /add 401 client=...".
 
 ---
 

@@ -6,6 +6,12 @@ Append a dated note after every major session. Keep entries concise.
 
 ---
 
+## 2026-11-25
+
+- Fleet security audit H4 (owner go): do_POST runs the token check and the cookie same-origin check before the inbox write, so only authenticated, same-origin or bearer ingests reach inbox.json (4abacb7, fb21e30). A refused capture shows only as a 401 line in the server log.
+- requirements-server.txt: the serving host's exact package set, certifi and urllib3 raised past their advisories; installed into a clean python3.14 environment and the full suite passed there (145).
+- Reviews: an independent reviewer, /code-review medium and /security-review (no findings). Not deployed: the deploy, the bind_addresses switch and the Shortcut proof wait for the owner to watch.
+
 ## 2026-07-31
 
 **Session type:** Bug hunt + hardening (junk-item outbreak).

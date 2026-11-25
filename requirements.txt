@@ -1,5 +1,7 @@
-# The server's packages, pinned (see requirements-server.txt), plus the menu
-# bar client's one extra package. The serving host installs only
-# requirements-server.txt.
--r requirements-server.txt
+# A development or menu bar client machine: loose minimums, as before.
+# The serving host installs the exact, tested set in requirements-server.txt
+# instead (code review 2026-11-25: pulling those exact pins into a client's
+# system Python could downgrade or conflict with packages already there).
 rumps>=0.4
+trafilatura>=1.8
+youtube-transcript-api>=0.6
