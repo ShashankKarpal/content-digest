@@ -1695,6 +1695,16 @@ class Handler(BaseHTTPRequestHandler):
             self._deny()
             return
 
+        # Cookie-authenticated requests come from the /view page and must be
+        # same-origin; a bearer token is a deliberate machine credential and
+        # is exempt. Origin/Sec-Fetch-Site are set by every modern browser.
+        # This check also runs before the inbox write (independent review,
+        # 2026-11-25): a page on another origin riding the owner's cookie
+        # must not leave an entry the sweep would later fetch.
+        if not self._bearer_ok() and not self._same_origin():
+            self._deny(403, "Cross-origin request refused")
+            return
+
         # Durable inbox capture: record every authenticated ingest link before
         # the fetch, so a fetch that fails or a dropped request is retried by
         # the inbox sweep (_reconcile_inbox).
@@ -1702,12 +1712,6 @@ class Handler(BaseHTTPRequestHandler):
             _inbox_url = body.get("url", "").strip()
             if _inbox_url:
                 _record_inbox(_inbox_url, authed=True)
-        # Cookie-authenticated requests come from the /view page and must be
-        # same-origin; a bearer token is a deliberate machine credential and
-        # is exempt. Origin/Sec-Fetch-Site are set by every modern browser.
-        if not self._bearer_ok() and not self._same_origin():
-            self._deny(403, "Cross-origin request refused")
-            return
         self._note_contact()
 
         if route in RETIRED_POST_PATHS:

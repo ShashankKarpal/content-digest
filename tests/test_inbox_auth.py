@@ -62,12 +62,14 @@ class InboxAuthTests(unittest.TestCase):
             setattr(server, name, value)
         self.tmp.cleanup()
 
-    def post(self, path, body, token=None, origin=None):
+    def post(self, path, body, token=None, origin=None, cookie=False):
         data = json.dumps(body).encode()
         req = urllib.request.Request(f"http://127.0.0.1:{self.port}{path}", data=data, method="POST")
         req.add_header("Content-Type", "application/json")
         if token:
             req.add_header("Authorization", "Bearer " + token)
+        if cookie:
+            req.add_header("Cookie", f"{server.COOKIE_NAME}={server._session_cookie_value()}")
         if origin:
             req.add_header("Origin", origin)
         try:
@@ -100,6 +102,18 @@ class InboxAuthTests(unittest.TestCase):
         items = json.loads(server.INBOX_FILE.read_text())["items"]
         self.assertEqual([i["url"] for i in items], ["https://example.com/good"])
         self.assertTrue(items[0]["authed"])
+
+    def test_cookie_from_another_origin_is_refused_and_not_recorded(self):
+        status = self.post("/add", {"url": "https://example.com/cookie-ride"}, cookie=True,
+                           origin="http://127.0.0.1:9999")
+        self.assertEqual(status, 403)
+        self.assertEqual(self.inbox_urls(), [])
+
+    def test_same_origin_cookie_ingest_is_recorded(self):
+        status = self.post("/add", {"url": "https://example.com/from-view"}, cookie=True,
+                           origin=f"http://127.0.0.1:{self.port}")
+        self.assertEqual(status, 200)
+        self.assertEqual(self.inbox_urls(), ["https://example.com/from-view"])
 
     def test_non_ingest_routes_never_touch_the_inbox(self):
         self.assertEqual(self.post("/delete", {"url": "https://example.com/x"}, token=TOKEN), 200)
