@@ -1,5 +1,27 @@
 # docs/decision-log.md
 
+## 2026-11-25 | Deploy | Signed commits on main only; no other branch is pushed
+
+Context: From 2026-11-25 the serving host deploys a new commit only when
+every commit since its live one carries a good SSH signature from the
+owner's key (or the owner accepted it by hand after review), and upstream
+moves forward. An independent review noted one gap a signature cannot
+close: the owner signs every commit in this repo, so a signed side branch
+pushed to GitHub would deploy if someone with push access moved main onto
+it.
+
+Decision: Work happens on main only. No other branch of this repo is
+pushed to GitHub. No signed-tag requirement. Signing stays on for every
+commit (repo-local git config on the development Mac); a commit made on
+GitHub's website or on another machine is refused by the serving host and
+the old code keeps running.
+
+Reason: Owner decision in chat, 2026-11-25. Proven the same day: the first
+signed commit (1473c2c) deployed through the gate; the unsigned commit
+before it fails the same signature check.
+
+---
+
 ## 2026-11-25 | Capture Security | The token check runs before the inbox write; server packages pinned
 
 Context: do_POST recorded every ingest link in inbox.json before the auth
