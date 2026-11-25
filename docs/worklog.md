@@ -10,7 +10,8 @@ Append a dated note after every major session. Keep entries concise.
 
 - Fleet security audit H4 (owner go): do_POST runs the token check and the cookie same-origin check before the inbox write, so only authenticated, same-origin or bearer ingests reach inbox.json (4abacb7, fb21e30). A refused capture shows only as a 401 line in the server log.
 - requirements-server.txt: the serving host's exact package set, certifi and urllib3 raised past their advisories; installed into a clean python3.14 environment and the full suite passed there (145).
-- Reviews: an independent reviewer, /code-review medium and /security-review (no findings). Not deployed: the deploy, the bind_addresses switch and the Shortcut proof wait for the owner to watch.
+- Reviews: an independent reviewer, /code-review medium and /security-review (no findings).
+- Deployed 16:03 with the owner watching: Auto Deploy pulled b7da690, the pinned packages went in (certifi, urllib3 only), bind_addresses switched on (loopback plus the tailnet address), server restarted 16:04. A no-token capture got 401 with inbox.json unchanged; the owner's Shortcut capture at 16:06 got 200 and was saved. README bind sentence now states it as live.
 
 ## 2026-07-31
 
