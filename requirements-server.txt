@@ -1,0 +1,30 @@
+# requirements-server.txt: the exact package set the Content Digest server
+# runs on the serving host (Homebrew python3.14), pinned, transitive packages
+# included. Taken from `python3.14 -m pip freeze` there on 2026-11-25 (fleet
+# security audit MRD2, O-049, owner go), with two packages raised past their
+# advisories: certifi 2026.5.20 -> 2026.11.20 and urllib3 2.7.0 -> 2.8.0.
+# Install on the serving host (the owner watching, it changes what runs):
+#   python3.14 -m pip install --break-system-packages -r requirements-server.txt
+# then restart the server and check /health. Move a pin only with a green
+# test run (python3 -m unittest discover -s tests).
+trafilatura==2.0.0
+youtube-transcript-api==1.2.4
+requests==2.34.2
+urllib3==2.8.0
+certifi==2026.11.20
+charset-normalizer==3.4.7
+idna==3.18
+lxml==6.1.1
+lxml_html_clean==0.4.5
+babel==2.18.0
+courlan==1.4.0
+dateparser==1.4.0
+defusedxml==0.7.1
+htmldate==1.10.0
+jusText==3.0.2
+python-dateutil==2.9.0.post0
+pytz==2026.2
+regex==2026.5.9
+six==1.17.0
+tld==0.13.2
+tzlocal==5.3.1

@@ -1660,7 +1660,8 @@ class Handler(BaseHTTPRequestHandler):
         if not re.fullmatch(r"[0-9]+", declared.strip()):
             self._deny(400, "Bad Content-Length")
             return
-        # Read the body FIRST so the URL is captured before auth or fetch can fail.
+        # Read the body before the auth check (the auth check itself needs no
+        # body, but the /view sign-in form carries the token in it).
         length = int(declared)
         if length > MAX_BODY_BYTES:
             self._deny(413, "Body too large")
@@ -1681,19 +1682,26 @@ class Handler(BaseHTTPRequestHandler):
         is_ingest = (route not in ("/delete", "/retry", "/failures/delete", "/ask")
                      and route not in RETIRED_POST_PATHS)
 
-        # Durable inbox capture: record every incoming link before auth and fetch.
-        if is_ingest:
-            _inbox_url = body.get("url", "").strip()
-            if _inbox_url:
-                _record_inbox(_inbox_url, authed=authed)
-
-        # Auth gate runs AFTER capture, so a rejected link is still recorded.
         # EVERY POST endpoint requires auth: bearer token (clients) or the
         # session cookie (the /view UI). Mutating endpoints were previously
         # exempt; that exemption was the core of issue #2.
+        # Since 2026-11-25 (fleet security audit HFCD1, H4) the gate runs
+        # BEFORE the inbox write: a peer without the token can no longer add
+        # entries to inbox.json (any web page open on a tailnet device could
+        # post one, and 500 of them pushed every real entry out of the capped
+        # file). Trade-off, owner approved: a capture sent with a wrong or
+        # stale token is refused with 401 and is not recorded.
         if not authed:
             self._deny()
             return
+
+        # Durable inbox capture: record every authenticated ingest link before
+        # the fetch, so a fetch that fails or a dropped request is retried by
+        # the inbox sweep (_reconcile_inbox).
+        if is_ingest:
+            _inbox_url = body.get("url", "").strip()
+            if _inbox_url:
+                _record_inbox(_inbox_url, authed=True)
         # Cookie-authenticated requests come from the /view page and must be
         # same-origin; a bearer token is a deliberate machine credential and
         # is exempt. Origin/Sec-Fetch-Site are set by every modern browser.

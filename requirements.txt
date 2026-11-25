@@ -1,3 +1,5 @@
+# The server's packages, pinned (see requirements-server.txt), plus the menu
+# bar client's one extra package. The serving host installs only
+# requirements-server.txt.
+-r requirements-server.txt
 rumps>=0.4
-trafilatura>=1.8
-youtube-transcript-api>=0.6

@@ -34,7 +34,7 @@
 - **Menu bar capture.** Click the icon, paste a URL, get a summary in seconds.
 - **iPhone share sheet.** A Shortcut posts to the server's authenticated endpoint.
 - **Chrome extension.** Click the icon, paste the exact URL, send. The popup reports honestly whether the item was saved, already saved, queued for retry, refused, or failed, and links straight to the knowledge base. Saving the current page with its rendered text (for logged-in-only pages such as Reddit and LinkedIn) and right-click capture remain as optional conveniences.
-- **Inbox capture before auth.** URLs are logged to `inbox.json` before the auth check so a rejected request is still visible for review, but only authenticated entries are ever re-queued for processing.
+- **Durable inbox.** Every authenticated link is logged to `inbox.json` before it is fetched, so a fetch that fails or a dropped request is re-queued by the next sweep. A request without the token is refused before anything is written (since 2026-11-25).
 - **Self-healing capture.** Fetch failures retry 10 minutes after the server starts and every 6 hours after that, up to 3 attempts; inbox URLs that never became items are re-queued on the same sweep.
 - **URL normalization.** Tracking parameters (`utm_*`, `fbclid`, `share_id`, `si`) are stripped before dedupe and storage.
 - **Canonical URL dedupe.** The same article saved twice stays one item.
@@ -91,7 +91,7 @@ Requires: Python 3.11 or later, Ollama running locally, Homebrew.
 ```bash
 git clone https://github.com/ShashankKarpal/content-digest.git
 cd content-digest
-pip3 install -r requirements.txt --break-system-packages
+pip3 install -r requirements.txt --break-system-packages   # server pins live in requirements-server.txt
 ollama pull qwen2.5:3b              # the summarizer
 ollama pull nomic-embed-text        # optional, enables semantic ask
 python3 server.py                   # the server (port 7778)
@@ -119,7 +119,7 @@ Real credentials live only on local machines. Nothing in this repository holds a
 
 ## Network exposure
 
-The server binds `0.0.0.0:7778` but refuses any connection that does not come from loopback, an RFC1918 private range, or the Tailscale CGNAT block (100.64/10). Every POST endpoint, including `/delete` and `/ask`, requires the bearer token or a valid session cookie, and the knowledge base at `/view` is locked behind a one-time unlock per browser: the Locked page asks for the token once, posts it, and sets a year-long session cookie (the token itself is never stored in the browser). The token never goes in a URL: the menu bar client opens plain `/view` (since 2026-09-05), the Chrome extension signs the browser in with the same session cookie and opens plain `/view` (since 0.6.3), and an old `/view?token=` link gets the sign-in page instead of signing in. A POST with a negative, malformed or missing `Content-Length` is refused before its body is read, and the page fetcher connects only to an address it has checked (no DNS rebinding). Placeholder token values are treated as no token at all: the server rejects everything until a real random token is set.
+By default the server binds `0.0.0.0:7778` but refuses any connection that does not come from loopback, an RFC1918 private range, or the Tailscale CGNAT block (100.64/10); with `bind_addresses` in its config (loopback plus the tailnet address on the serving host since 2026-11-25) it listens on those addresses only, so the kernel refuses every other interface. Every POST endpoint, including `/delete` and `/ask`, requires the bearer token or a valid session cookie, and the knowledge base at `/view` is locked behind a one-time unlock per browser: the Locked page asks for the token once, posts it, and sets a year-long session cookie (the token itself is never stored in the browser). The token never goes in a URL: the menu bar client opens plain `/view` (since 2026-09-05), the Chrome extension signs the browser in with the same session cookie and opens plain `/view` (since 0.6.3), and an old `/view?token=` link gets the sign-in page instead of signing in. A POST with a negative, malformed or missing `Content-Length` is refused before its body is read, and the page fetcher connects only to an address it has checked (no DNS rebinding). Placeholder token values are treated as no token at all: the server rejects everything until a real random token is set.
 
 Optional explicit bind (off by default): add `"bind_addresses": ["127.0.0.1", "100.x.y.z"]` to `config.json` and the server listens on exactly those addresses instead of `0.0.0.0`, so traffic from any other interface is refused by the kernel before the allowlist is even consulted. Each address is retried for up to two minutes at startup because a tailnet address can appear a few seconds after login; an address that never binds is skipped, and if none binds the server falls back to `0.0.0.0` with a warning so capture stays up. List your home LAN address too if the phone saves over Wi-Fi.
 

@@ -1,5 +1,27 @@
 # docs/decision-log.md
 
+## 2026-11-25 | Capture Security | The token check runs before the inbox write; server packages pinned
+
+Context: do_POST recorded every ingest link in inbox.json before the auth
+check (so a rejected capture stayed visible). Any page open in a browser on
+a tailnet device could therefore add entries, and 500 of them pushed every
+real entry out of the capped file (fleet security audit H4). The server's
+packages were unpinned, and two of them (certifi, urllib3) carried advisories.
+
+Decision: The auth gate runs first; only an authenticated ingest is written
+to the inbox, still before the fetch so the sweep can retry it. A capture
+with a wrong or stale token is refused with 401 and not recorded. The
+serving host's package set is pinned in requirements-server.txt, with
+certifi and urllib3 raised past their advisories. Binding to loopback plus
+the tailnet address uses the existing bind_addresses switch in the serving
+host's config.json, turned on at deploy time with the owner watching.
+
+Reason: Owner go 2026-11-25, after confirming the iPhone Shortcut posts to
+the tailnet address. Tested: tests/test_inbox_auth.py fails 3 of 5 on the
+old code and passes on the new; full suite 143 of 143.
+
+---
+
 ## 2026-11-03 | Client Runtime | Client log in ~/Library/Logs; PYTHONHOME on the uv 3.14 alias
 
 Context: The client LaunchAgent wrote its log to ~/contentdigest-client.log
